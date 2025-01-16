@@ -1,0 +1,75 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body {
+    background-color: #f3e9d6;
+    border-bottom: solid #edc84b 20px;
+}
+
+.title{
+    color: #edc84b;
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 100;
+    border-bottom: solid 3px;
+    width: 900px;
+    margin: 0px auto;
+    margin-bottom: 50px;
+}
+
+.container{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.menu {
+    border-bottom: solid;
+    border-top:  solid;
+    width: 130px;
+   margin: 10px auto;
+}
+
+.pizza-container{
+
+ 
+    width: 30%;
+    margin: 50px auto;
+    /* border: solid green 5px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+.pizza-container img {
+    width: 100%;
+    height: 150px;
+    width: 200px;
+    margin-right: 10px;
+    border-radius: 15px;
+}
+
+.pizza-info{
+   
+    text-align: start;
+}
+
+.container{
+  
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 100px;
+}
+
+footer {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 50px;
+}
+
+.pizza-info p {
+    color: gray;
+}
