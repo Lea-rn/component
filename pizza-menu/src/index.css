@@ -73,3 +73,20 @@ footer {
 .pizza-info p {
     color: gray;
 }
+
+button {
+    display: block;
+    margin: 25px auto;
+    background-color: #edc84b;
+    color: white;
+    font-weight: 700;
+    border: transparent;
+    padding: 13px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 2s;
+}
+
+button:hover{
+    transform: scale(1.1,1.1);
+}

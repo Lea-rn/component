@@ -51,7 +51,7 @@ function App() {
   return (
     <div>
       <Header />
-        <h2 className="menu">Our Menu</h2> 
+      <h2 className="menu">Our Menu</h2>
       <Menu />
       <Footer />
     </div>
@@ -70,10 +70,21 @@ function Header() {
 }
 
 function Menu() {
-  return (
+  const pizzas = pizzaData ;
+  // const pizzas = [] ; 
+  const numPizzas = pizzas.length ; 
+
+  return (  
+    //// with the && (and) operator : 
     <div className="container">
-    
-      <Pizza
+      {numPizzas >0 && (
+     pizzas.map((pizza) => {
+      return <Pizza pizzaObj={pizza} key={pizza.name} />;
+})
+      )}
+      
+
+      {/* <Pizza
         name="pizza salamino"
         ingredients="Tomato, mozarella, and pepperoni"
         photoName="pizzas/salamino.jpg"
@@ -113,23 +124,19 @@ function Menu() {
         ingredients="Tomato, mozarella, and pepperoni"
         photoName="pizzas/salamino.jpg"
         price = {10}
-      />
-  
-
- 
+      /> */}
     </div>
   );
 }
 
 function Pizza(props) {
-  
   return (
     <div className="pizza-container">
-      <img src={props.photoName} alt={props.name} />
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
       <div className="pizza-info">
-        <h3>{props.name}</h3>
-        <p>{props.ingredients}</p>
-        <p>{props.price+3}</p>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <p>{props.pizzaObj.price + 3}</p>
       </div>
     </div>
   );
@@ -143,5 +150,16 @@ function Footer() {
 
   // isOpen ? alert("we're currently open !!") : alert("sorry we're close !!! ")
 
-  return <footer> we're currently open !!!! </footer>;
+  return (
+  
+<div>
+      <footer>
+        {isOpen && `we're open until ${closeHour}:00 . Come visit us or order online` }
+      
+        
+      </footer>
+      <button>Order</button>
+</div>
+    
+  );
 }
