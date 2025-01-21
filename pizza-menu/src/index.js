@@ -52,6 +52,7 @@ function App() {
     <div>
       <Header />
       <h2 className="menu">Our Menu</h2>
+
       <Menu />
       <Footer />
     </div>
@@ -60,6 +61,15 @@ function App() {
 
 const root = ReactDom.createRoot(document.getElementById("root"));
 root.render(<App />);
+
+const messageStyle = {
+  marginLeft: "auto",
+  marginRight: "auto",
+  fontSize: "30px",
+  fontWeight: "400",
+  color: "red",
+  textAlign: "center",
+};
 
 function Header() {
   /// inline style in react ... :
@@ -70,19 +80,41 @@ function Header() {
 }
 
 function Menu() {
-  const pizzas = pizzaData ;
-  // const pizzas = [] ; 
-  const numPizzas = pizzas.length ; 
+  const pizzas = pizzaData;
+  // const pizzas = [] ;
+  const numPizzas = pizzas.length;
 
-  return (  
-    //// with the && (and) operator : 
-    <div className="container">
-      {numPizzas >0 && (
+  return (
+    <div>
+      {/* render the page with the && (and) operator       */}
+      {/* {numPizzas >0 && (
      pizzas.map((pizza) => {
       return <Pizza pizzaObj={pizza} key={pizza.name} />;
 })
+      )} */}
+
+      {/* render the page with ternary operator ... */}
+
+      {numPizzas > 0 ? (
+        <>
+          <p className="presentation">
+            Authentic Italian cuisines . 6 creative dishes to choose from . All
+            from our stone oven , all organic , all delecious{" "}
+          </p>
+
+          <div className="container">
+            {pizzas.map((ele) => {
+              return <Pizza pizzaObj={ele} key={ele.name} />;
+            })}
+          </div>
+
+ 
+        </>
+      ) : (
+        <p style={messageStyle}>
+          We're still working on our menu . Please come back later 😊
+        </p>
       )}
-      
 
       {/* <Pizza
         name="pizza salamino"
@@ -129,14 +161,19 @@ function Menu() {
   );
 }
 
-function Pizza(props) {
+function Pizza({ pizzaObj }) {
+  // if (pizzaObj.soldOut) return null; ///// early return ...
   return (
-    <div className="pizza-container">
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+    <div className={`pizza-container ${pizzaObj.soldOut ? "soldout" : " " } `}>
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div className="pizza-info">
-        <h3>{props.pizzaObj.name}</h3>
-        <p>{props.pizzaObj.ingredients}</p>
-        <p>{props.pizzaObj.price + 3}</p>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+     {/* {
+      pizzaObj.soldOut ? <p>SOLD OUT</p> : <p>{pizzaObj.price}</p>
+
+     } */}
+     <p>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</p>
       </div>
     </div>
   );
@@ -151,15 +188,42 @@ function Footer() {
   // isOpen ? alert("we're currently open !!") : alert("sorry we're close !!! ")
 
   return (
-  
-<div>
+    ///// ternary operator ::
+
+    <footer>
+      {isOpen ? (
+        //  <Order closeHour={closeHour}  />
+        <Order closeHour={closeHour} openHour={openHour} />
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour} and {closeHour}
+        </p>
+      )}
+    </footer>
+  );
+}
+
+///// dry === > d'ont repeat yourself ....
+function Order({ closeHour, openHour }) {
+  return (
+    <div>
+      <p>
+        we're open from {openHour}:00 until {closeHour}:00 . Come visit us or
+        order online
+      </p>
+      <button>order</button>
+    </div>
+  );
+}
+
+//// with and oprator :::
+{
+  /* <div>
       <footer>
         {isOpen && `we're open until ${closeHour}:00 . Come visit us or order online` }
       
         
       </footer>
       <button>Order</button>
-</div>
-    
-  );
+</div> */
 }
